@@ -10,7 +10,7 @@ namespace AI.Mistrel.model.Service.Implement
         {
 
         }
-        public async Task<string> OpenAITurboModelAsync(dynamic invoiceJson)
+        public async Task<string> OpenAITurboModelAsync(string prompt, dynamic invoiceJson)
         {
             string apiKey = "2ZlLJj87ueRboSsZzLG0mMKX2jQbe62q";
             string apiUrl = "https://api.mistral.ai/v1/chat/completions";
@@ -21,7 +21,7 @@ namespace AI.Mistrel.model.Service.Implement
                 messages = new object[]
     {
 
-                      new { role = "user", content = $"::\n" + invoiceJson },
+                      new { role = "user", content = $"{prompt}::\n" + invoiceJson },
                      // new { role = "user", content = userPrompt }
     }
             };

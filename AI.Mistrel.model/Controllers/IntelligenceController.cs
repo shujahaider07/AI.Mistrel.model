@@ -28,17 +28,13 @@ namespace AI.Mistrel.model.Controllers
                     return BadRequest(new { success = false, error = "Request body is null." });
                 }
 
-                if (string.IsNullOrWhiteSpace(request.Prompt) || string.IsNullOrWhiteSpace(request.InvoiceData))
+                if (string.IsNullOrWhiteSpace(request.Prompt) || string.IsNullOrWhiteSpace(request.Data))
                 {
                     return BadRequest(new { success = false, error = "Prompt or InvoiceData is missing." });
                 }
 
-                // Combine the prompt with invoiceData into one message
-                string finalPrompt = $"{request.Prompt}\n\n{request.InvoiceData}";
-
-                // Call your AI service method
-                var data = JsonConvert.SerializeObject(request.InvoiceData);
-                var analysisResult = await _artificialIntelligence.OpenAITurboModelAsync(finalPrompt);
+               
+                var analysisResult = await _artificialIntelligence.OpenAITurboModelAsync(request.Prompt,request.Data);
 
                 if (string.IsNullOrWhiteSpace(analysisResult))
                 {
@@ -71,6 +67,6 @@ namespace AI.Mistrel.model.Controllers
     public class PromptRequest
     {
         public string Prompt { get; set; }
-        public string InvoiceData { get; set; }
+        public string Data { get; set; }
     }
 }

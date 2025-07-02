@@ -2,6 +2,6 @@
 {
     public interface IArtificialIntelligence
     {
-        Task<string> OpenAITurboModelAsync(dynamic invoiceJson);
+        Task<string> OpenAITurboModelAsync(string prompt, dynamic Data);
     }
 }

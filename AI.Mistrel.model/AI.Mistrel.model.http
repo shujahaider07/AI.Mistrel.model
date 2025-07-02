@@ -1,0 +1,6 @@
+@AI.Mistrel.model_HostAddress = http://localhost:5197
+
+GET {{AI.Mistrel.model_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
